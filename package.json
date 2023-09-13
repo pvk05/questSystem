@@ -1,0 +1,30 @@
+{
+	"name": "questsystem",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"gh-pages": "npm run build && npx gh-pages -d build"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-node": "^1.3.1",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/adapter-vercel": "^3.0.3",
+		"@sveltejs/kit": "^1.20.4",
+		"gh-pages": "^6.0.0",
+		"svelte": "^4.0.5",
+		"vite": "^4.4.2"
+	},
+	"type": "module",
+	"dependencies": {
+		"@selectize/selectize": "^0.15.2",
+		"@supabase/supabase-js": "^2.33.1",
+		"jquery": "^3.7.1",
+		"minecraft-data": "^3.44.0",
+		"mongodb": "^6.0.0",
+		"yaml": "^2.3.1"
+	}
+}
