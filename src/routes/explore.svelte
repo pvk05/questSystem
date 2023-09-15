@@ -27,7 +27,7 @@
 <!-- Biomes -->
 {#if quests[n].exploreWhat == "biomes"}
 	<label for="selectBiomes{n}">
-		<select name="selectBiomes{n}" id="selectBiomes{n}" multiple>
+		<select name="selectBiomes{n}" id="selectBiomes{n}" multiple="multiple">
 			<option value="default" selected hidden>Select</option>
 			{#each biomes as biome}
 				<option value={biome.name}>{biome.displayName}</option>
