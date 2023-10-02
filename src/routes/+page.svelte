@@ -5,6 +5,13 @@
 
     import YAML from "/node_modules/yaml";
 
+    import axios from "axios";
+
+    //import { https } from "https";
+
+    //import { PasteClient, Publicity, ExpireDate } from "pastebin-api";
+    //const client = new PasteClient("2gFTxis_9Wmzk-rir3TIIOmtsH9GVzwy");
+
     $: questsAmount = 1;
 
     function addQuest() {
@@ -36,17 +43,62 @@
         };
     }
 
-    function assemble() {
+    async function assemble() {
         console.log(quests);
         let doc = new YAML.Document();
         doc.contents = quests;
         console.log(doc.toString());
-        console.log("------")
-        console.log(data)
+        console.log("------");
+
+        
+
+        const apiKey = "2gFTxis_9Wmzk-rir3TIIOmtsH9GVzwy";
+        const pasteContent = "Hello, Pastebin!";
+
+        const requestData = {
+            api_dev_key: apiKey,
+            api_option: "paste",
+            api_paste_code: pasteContent,
+            api_paste_private: "0", // Public paste
+            api_paste_name: "test.yml", // Optional, name of the paste
+        };
+
+        axios
+            .post("https://pastebin.com/api/api_post.php", requestData)
+            .then((response) => {
+                console.log("Paste URL:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+
+        //var request = new XMLHttpRequest();
+
+        /*request.open("POST", "https://pastebin.com/api/api_post.php", true);
+
+        request.setRequestHeader(
+            "Content-type",
+            "application/x-www-form-urlencoded"
+        );
+
+        request.send(
+            "api_dev_key=YOUR_KEY_HERE&api_option=paste&api_paste_private=0&api_paste_name=myname.js&api_paste_expire_date=10M&api_paste_format=javascript&api_paste_code=random"
+        );*/
+
+        //console.log(data)
+
+        /*const url = await client.createPaste({
+            code: doc,
+            expireDate: ExpireDate.Never,
+            format: "yaml",
+            name: "something.yml",
+            publicity: Publicity.Public,
+        });
+        console.log(url)*/
     }
 
     export let data;
-    console.log(data.biomes)
+    console.log(data.biomes);
 </script>
 
 <h1>Quest System</h1>
@@ -69,7 +121,7 @@
 
     {#each Array(questsAmount) as _, index (index)}
         {#if quests[index] != null}
-            <QuestForm n={index} mcData={data}/>
+            <QuestForm n={index} mcData={data} />
             <br />
         {/if}
     {/each}
