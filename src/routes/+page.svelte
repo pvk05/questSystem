@@ -50,27 +50,43 @@
         console.log(doc.toString());
         console.log("------");
 
-        
+        const express = require("express");
+        const axios = require("axios");
 
-        const apiKey = "2gFTxis_9Wmzk-rir3TIIOmtsH9GVzwy";
-        const pasteContent = "Hello, Pastebin!";
+        const app = express();
+        const port = 3000;
 
-        const requestData = {
-            api_dev_key: apiKey,
-            api_option: "paste",
-            api_paste_code: pasteContent,
-            api_paste_private: "0", // Public paste
-            api_paste_name: "test.yml", // Optional, name of the paste
-        };
+        app.use(express.json());
 
-        axios
-            .post("https://pastebin.com/api/api_post.php", requestData)
-            .then((response) => {
-                console.log("Paste URL:", response.data);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
+        app.post("/createPaste", async (req, res) => {
+            try {
+                const apiKey = "YOUR_API_KEY"; // Your Pastebin API key
+                const pasteContent = req.body.content;
+
+                const requestData = {
+                    api_dev_key: apiKey,
+                    api_option: "paste",
+                    api_paste_code: pasteContent,
+                    api_paste_private: "0", // Public paste
+                    api_paste_name: "MyPaste.txt", // Optional, name of the paste
+                };
+
+                const response = await axios.post(
+                    "https://pastebin.com/api/api_post.php",
+                    requestData
+                );
+                res.json({ pasteUrl: response.data });
+            } catch (error) {
+                console.error("Error:", error.message);
+                res.status(500).json({
+                    error: "An error occurred while creating the paste.",
+                });
+            }
+        });
+
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`);
+        });
 
         //var request = new XMLHttpRequest();
 
