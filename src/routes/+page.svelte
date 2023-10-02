@@ -5,6 +5,7 @@
 
     import YAML from "/node_modules/yaml";
 
+    import express from 'express';
     import axios from "axios";
 
     //import { https } from "https";
@@ -50,8 +51,7 @@
         console.log(doc.toString());
         console.log("------");
 
-        const express = require("express");
-        const axios = require("axios");
+        
 
         const app = express();
         const port = 3000;
