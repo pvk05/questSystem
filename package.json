@@ -26,12 +26,8 @@
 		"@selectize/selectize": "^0.15.2",
 		"@supabase/supabase-js": "^2.33.1",
 		"@sveltejs/adapter-netlify": "^2.0.8",
-		"axios": "^1.5.1",
-		"express": "^4.18.2",
 		"jquery": "^3.7.1",
 		"minecraft-data": "^3.44.0",
-		"pastebin-api": "^6.1.0",
-		"pastebin-ts": "^1.3.0",
 		"yaml": "^2.3.1"
 	}
 }
