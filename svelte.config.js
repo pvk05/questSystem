@@ -1,5 +1,4 @@
 import adapter from '@sveltejs/adapter-netlify';
-import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -18,14 +17,7 @@ const config = {
 
 		// Add preprocess to handle TypeScript and other preprocessing
 		
-	},
-	preprocess: [
-		preprocess({
-		  typescript: {
-			tsconfigFile: './tsconfig.json', // Path to your tsconfig.json
-		  },
-		}),
-	],
+	}
 };
 
 export default config;
